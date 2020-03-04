@@ -294,7 +294,7 @@ QMMMSettings::QMMMSettings()
   QMRMSForceTol= 5e-3; //Hartrees/Ang //10*QMMMOpts.QMOptTol;
   QMMaxForceTol= 1e-2;//Hartrees/Ang  //20*QMMMOpts.QMOptTol;
   MaxQMSteps=50;
-  KeepFiles=false;
+  KeepFiles=false; //Default setting changed by "keep_files" and "debug" kwargs
   debug=false;
   perOpt=maxOptSteps;
   perQM=MaxQMSteps;
@@ -979,4 +979,3 @@ double PeriodicTable::getAtMass(string atName)
   }
   return mass;
 };
-

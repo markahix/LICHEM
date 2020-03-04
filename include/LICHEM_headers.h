@@ -38,6 +38,7 @@ using namespace LICHEMGlobal;
 #include "LICHEM_base_classes.h"
 #include "LICHEM_Hermite.h"
 #include "LICHEM_classes.h"
+#include <ctype.h>
 
 
 //Set up periodic table
@@ -273,4 +274,3 @@ void WriteQMConnect(int&,char**&);
 
 
 #endif
-
