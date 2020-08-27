@@ -121,13 +121,11 @@ def RecoverFreqs():
   cmd += "sed -n '/Frequencies:/,$p' | "
   cmd += "sed '/Frequencies:/d'"
   try:
-    #Safely check energy
-    freqList = []
     tmpFreqs = subprocess.check_output(cmd,shell=True) #Get results
     tmpFreqs = tmpFreqs.decode('utf-8').strip()
     tmpFreqs = tmpFreqs.split()
-    for freqVal in tmpFreqs:
-      freqList.append(float(freqVal))
+    #Safely check energy
+    freqList = [float(freqVal) for freqVal in tmpFreqs]
   except:
     #Calculation failed
     freqList = []
@@ -141,17 +139,14 @@ def AddPass(tName,testPass,txtLn):
   #Add the name of the test
   tName = " "+tName
   deltaTxt = TTxtLen-len(tName)
-  if (deltaTxt > 0):
-    #Make the test name consistent with TTxtLen
-    for i in range(deltaTxt):
-      tName += " "
-  else:
+  if deltaTxt <= 0:
     #Update bad length
     TTxtLen -= deltaTxt
     TTxtLen += 1
     deltaTxt = TTxtLen-len(tname)
-    for i in range(deltaTxt):
-      tName += " "
+    #Make the test name consistent with TTxtLen
+  for _ in range(deltaTxt):
+    tName += " "
   #Label as pass or fail
   txtLn += tName
   if (testPass == 1):
